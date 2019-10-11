@@ -5,28 +5,27 @@ const Projects = require('./project-model');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    Projects.getProjects()
-    .then(project => {
-        res.status(200).json(project)
+    Projects.getResources()
+    .then(resource => {
+        res.status(200).json(resource)
     })
     .catch(err => {
         res.status(500).json({
-            errorMessage: "error getting projects", err
+            errorMessage: "error getting resources", err
         })
     })
 })
 
 router.post('/', (req, res) => {
-    Projects.addProject(req.body)
-    .then(project => {
-        res.status(201).json(project)
+    Projects.addResource(req.body)
+    .then(resource => {
+        res.status(201).json(resource)
     })
     .catch(err => {
         res.status(500).json({
-            errorMessage: "error adding project", err
+            errorMessage: "error adding resource", err
         })
     })
 })
-
 
 module.exports = router;
