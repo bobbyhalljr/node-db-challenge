@@ -51,6 +51,7 @@ function getTasks(id){
 function addTask(task, id){
     return db('projects')
     .join('tasks', 'projects.id', '=', 'tasks.task_id')
+    .where({ task_id: id })
     .insert(task, 'id')
     .then(([ id ]) => {
         return getProjectById(id)
