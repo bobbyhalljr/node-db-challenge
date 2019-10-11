@@ -6,7 +6,10 @@ exports.up = function(knex) {
 
         tbl.string('name', 255).notNullable()
         tbl.string('description', 255)
-        tbl.boolean('completed')   
+        tbl.boolean('completed')
+        .notNullable()
+        .jsonb('completed')
+        .defaultTo(JSON.stringify({ 'completed': false }))   
     })
     .createTable('tasks', tbl => {
         tbl.increments();
@@ -15,13 +18,17 @@ exports.up = function(knex) {
         tbl.string('description', 255).notNullable()
         tbl.string('notes', 255)
         tbl.boolean('completed')
+        .notNullable()
+        .jsonb('completed')
+        .defaultTo(JSON.stringify({ 'completed': false })) 
+        
         tbl
         .integer('task_id')
         .unsigned()
         .notNullable()
         .references('id')
         .inTable('tasks')
-        // .onUpdate('CASCADE')
+        .onUpdate('CASCADE')
         .onDelete('CASCADE')
         .unique()
     })
