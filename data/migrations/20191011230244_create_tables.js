@@ -6,36 +6,35 @@ exports.up = function(knex) {
 
         tbl.string('name', 255).notNullable()
         tbl.string('description', 255)
-        tbl.boolean('completed')
+        tbl
+        .boolean('completed')
         .notNullable()
-        .jsonb('completed')
-        .defaultTo(JSON.stringify({ 'completed': false }))   
+        .defaultTo(false) 
     })
     .createTable('tasks', tbl => {
         tbl.increments();
 
-        tbl.string('name', 255).notNullable()
         tbl.string('description', 255).notNullable()
         tbl.string('notes', 255)
-        tbl.boolean('completed')
+        tbl
+        .boolean('completed')
         .notNullable()
-        .jsonb('completed')
-        .defaultTo(JSON.stringify({ 'completed': false })) 
+        .defaultTo(false) 
         
         tbl
-        .integer('task_id')
+        .integer('project_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('tasks')
+        .inTable('projects')
         .onUpdate('CASCADE')
-        .onDelete('CASCADE')
-        .unique()
+        .onDelete('RESTRICT')
+        .unique('project_id')
     })
     .createTable('resources', tbl => {
         tbl.increments();
 
-        tbl.string('name', 255)
+        tbl.string('name', 255).notNullable()
         tbl.string('description', 255)
     })
 };

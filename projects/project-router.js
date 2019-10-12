@@ -41,7 +41,8 @@ router.post('/', (req, res) => {
 })
 
 router.get('/:id/tasks', (req, res) => {
-    Projects.getTasks(req.params.id)
+    const id = req.params.id;
+    Projects.getTasks(id)
     .then(tasks => {
         res.status(200).json(tasks)
     })
@@ -53,7 +54,8 @@ router.get('/:id/tasks', (req, res) => {
 })
 
 router.post('/:id/tasks', (req, res) => {
-    Projects.addTask(req.body)
+    const taskData = req.params.id;
+    Projects.addTask(taskData)
     .then(task => {
         res.status(201).json(task)
     })

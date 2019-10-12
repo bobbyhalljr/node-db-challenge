@@ -36,22 +36,23 @@ function addProject(project){
 
 function getTasks(id){
     return db('projects')
-    .join('tasks', 'projects.id', '=', 'tasks.task_id')
-    .where({ task_id: id })
-    .select(
-        'projects.name as project', 
-        'projects.description as Project Description', 
-        'tasks.name as Task', 
-        'tasks.description as Task description', 
-        'tasks.notes as Tasks Notes', 
-        'projects.completed as Projects Completed', 
-        'tasks.completed as Tasks Completed')
+    .join('tasks', 'projects.id', '=', 'tasks.project_id')
+    .where({ project_id: id })
+    // .select(
+    //     'projects.name as project', 
+    //     'projects.description as Project Description', 
+    //     'tasks.name as Task', 
+    //     'tasks.description as Task description', 
+    //     'tasks.notes as Tasks Notes', 
+    //     'projects.completed as Projects Completed', 
+    //     'tasks.completed as Tasks Completed'
+    // )
 }
 
 function addTask(task, id){
-    return db('projects')
-    .join('tasks', 'projects.id', '=', 'tasks.task_id')
-    .where({ task_id: id })
+    return db('tasks')
+    .join('tasks', 'projects.id', '=', 'tasks.project_id')
+    .where({ project_id: id })
     .insert(task, 'id')
     .then(([ id ]) => {
         return getProjectById(id)
