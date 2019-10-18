@@ -22,14 +22,14 @@ exports.up = function(knex) {
         .defaultTo(false) 
 
         tbl
-        .integer('task_id')
+        .integer('project_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('tasks')
+        .inTable('projects')
         .onUpdate('CASCADE')
         .onDelete('RESTRICT')
-        .unique('task_id')
+        .unique('project_id')
         
     })
     .createTable('resources', tbl => {

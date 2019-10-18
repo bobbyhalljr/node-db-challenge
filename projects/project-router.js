@@ -53,9 +53,9 @@ router.get('/:id/tasks', (req, res) => {
     })
 })
 
-router.post('/:id/tasks', (req, res) => {
-    const taskData = req.params.id;
-    Projects.addTask(taskData)
+router.post('/tasks', (req, res) => {
+    // const taskData = req.params.id;
+    Projects.addTask(req.body)
     .then(task => {
         res.status(201).json(task)
     })
