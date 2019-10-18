@@ -20,16 +20,17 @@ exports.up = function(knex) {
         .boolean('completed')
         .notNullable()
         .defaultTo(false) 
-        
+
         tbl
-        .integer('project_id')
+        .integer('task_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('projects')
+        .inTable('tasks')
         .onUpdate('CASCADE')
         .onDelete('RESTRICT')
-        .unique('project_id')
+        .unique('task_id')
+        
     })
     .createTable('resources', tbl => {
         tbl.increments();
