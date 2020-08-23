@@ -40,11 +40,20 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+** The difference between relational Databases and SQL is that SQL is the standard language used by relational databases. Each relational database has extra features added to SQL.
+
 - [ ] Why do tables need a `primary key`?
+
+** Tables need a primary key so that the database can keep track of each table and all the data (update , delete) and so the database is normalized and organized.
+
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+** A forien key 
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+** In order to have a “many to many” relationships you need a third table.
 
 ## Minimum Viable Product
 
